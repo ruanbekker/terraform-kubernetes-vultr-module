@@ -29,9 +29,9 @@ No modules.
 
 | Name | Description | Type | Default | Required |
 |------|-------------|------|---------|:--------:|
-| <a name="input_kubernetes_version"></a> [kubernetes\_version](#input\_kubernetes\_version) | The kubernetes version. | `string` | `"v1.29.4+1"` | no |
+| <a name="input_cluster_name"></a> [cluster\_name](#input\_cluster\_name) | The kubernetes cluster name. | `string` | `"test"` | no |
+| <a name="input_cluster_version"></a> [cluster\_version](#input\_cluster\_version) | The kubernetes version. | `string` | `"v1.29.4+1"` | no |
 | <a name="input_monthly_cost"></a> [monthly\_cost](#input\_monthly\_cost) | The monthly costage. | `string` | `"10"` | no |
-| <a name="input_name"></a> [name](#input\_name) | n/a | `string` | `"test"` | no |
 | <a name="input_ram"></a> [ram](#input\_ram) | The amount of ram in megabytes. | `string` | `"2048"` | no |
 | <a name="input_region_city"></a> [region\_city](#input\_region\_city) | The city name of the region | `string` | `"Amsterdam"` | no |
 | <a name="input_vcpu_count"></a> [vcpu\_count](#input\_vcpu\_count) | The amount of vcpu cores. | `string` | `"1"` | no |
@@ -43,19 +43,19 @@ No modules.
 | <a name="output_client_certificate"></a> [client\_certificate](#output\_client\_certificate) | n/a |
 | <a name="output_client_key"></a> [client\_key](#output\_client\_key) | n/a |
 | <a name="output_cluster_ca_certificate"></a> [cluster\_ca\_certificate](#output\_cluster\_ca\_certificate) | n/a |
-| <a name="output_endpoint"></a> [endpoint](#output\_endpoint) | n/a |
-| <a name="output_kube_config"></a> [kube\_config](#output\_kube\_config) | n/a |
+| <a name="output_endpoint"></a> [endpoint](#output\_endpoint) | The kubernetes api endpoint. |
+| <a name="output_kube_config"></a> [kube\_config](#output\_kube\_config) | The kubeconfig in yaml format. |
 
 ## Example
 
-You can see a full example in `[./example/](./example)`, and authentication needs to be provided using a api key, which can be seen at `[./example/providers.tf](./example/providers.tf).`
+You can see a full example in [./example/](./example), and authentication needs to be provided using a api key, which can be seen at [./example/providers.tf](./example/providers.tf).
 
 ```hcl
 module "kubernetes" {
   source  = "git::https://github.com/ruanbekker/terraform-kubernetes-vultr-module.git?ref=stable"
 
-  name               = "test-cluster"
-  kubernetes_version = "v1.29.4+1"
+  cluster_name    = "test-cluster"
+  cluster_version = "v1.29.4+1"
 }
 ```
 
