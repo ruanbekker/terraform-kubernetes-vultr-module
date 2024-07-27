@@ -57,6 +57,32 @@ module "kubernetes" {
   cluster_name    = "test-cluster"
   cluster_version = "v1.29.4+1"
 }
+
+output "kubeconfig" {
+  value     = module.kubernetes.kube_config
+  sensitive = true
+}
+```
+
+Deploy:
+
+```bash
+export TF_VAR_vultr_api_key="<vultr-api-key>"
+terraform init
+terraform apply -auto-approve
+```
+
+Set kubeconfig:
+
+```bash
+export KUBECONFIG=/tmp/vultr.kubeconfig
+terraform output -raw kubeconfig | base64 -d > $KUBECONFIG
+```
+
+Access the cluster:
+
+```bash
+kubectl get nodes
 ```
 
 ## Module Documentation
